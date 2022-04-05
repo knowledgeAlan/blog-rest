@@ -1,14 +1,15 @@
 # golang image where workspace (GOPATH) configured at /go.
 FROM golang:latest
 
-# Copy the local package files to the container's workspace.
-ADD . 
+# create a working directory
+WORKDIR /app
+# add source code
+COPY . .
 
-# Build the golang-docker command inside the container.
-RUN go install  
+RUN go build -o main main.go
 
-# Run the golang-docker command by default when the container starts.
-ENTRYPOINT  
+# run main.go
+CMD ["/app/main"]
 
-# http server listens on port 8080.
-EXPOSE 8080
+
+ 
